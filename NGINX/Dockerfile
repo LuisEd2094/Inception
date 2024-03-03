@@ -14,6 +14,7 @@ COPY index.html /usr/share/nginx/html/index.html
 
 EXPOSE 80
 
+#-g sets a global configuration option; daemon off; runs in the foreground
 CMD ["nginx", "-g", "daemon off;"]
 
 
