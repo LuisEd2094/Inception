@@ -8,11 +8,15 @@ all: $(NAME)
 
 
 
-$(NAME): 
-	@docker build -t nginx ./NGINX
-	@docker run -d -p 8080:80 nginx
+$(NAME): Makefile
+	@docker build -t nginx ./srcs/requirements/nginx/
+#@docker run -d -p 8080:80 nginx
 
-	
-.PHONY: stop
+fclean:
+	@docker system prune -af 
+
+re: fclean all	
+
+.PHONY: all fclean re
 
 
