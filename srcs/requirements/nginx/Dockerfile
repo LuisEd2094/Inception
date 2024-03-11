@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install nginx vim curl openssl -y
 #remove standard config and use mine  
 
 RUN mkdir -p /etc/nginx/ssl
-RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=ES/ST=BCN/L=Barcelona/O=42/OU=42/CN=lsoto-do.42.fr/UID=lsoto-do@student.42barcelona.com"
+RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt \
+-keyout /etc/nginx/ssl/inception.key \
+-subj "/C=ES/ST=BCN/L=Barcelona/O=42/OU=42/CN=lsoto-do.42.fr/UID=lsoto-do@student.42barcelona.com"
 
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
