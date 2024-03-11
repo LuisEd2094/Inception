@@ -2,14 +2,15 @@
 
 NAME        = 	inception
 
-
+NGINX		= ./srcs/requirements/nginx/Dockerfile
 
 all: $(NAME)
 
 
 
-$(NAME): Makefile
+$(NAME): Makefile $(NGINX)
 	@docker build -t nginx ./srcs/requirements/nginx/
+	@echo $(NGINX)
 #@docker run -d -p 8080:80 nginx
 
 fclean:
