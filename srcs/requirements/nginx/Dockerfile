@@ -12,15 +12,17 @@ RUN apt-get update && apt-get install nginx vim curl openssl -y
 RUN mkdir -p /etc/nginx/ssl
 RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=ES/ST=BCN/L=Barcelona/O=42/OU=42/CN=lsoto-do.42.fr/UID=lsoto-do@student.42barcelona.com"
 
-#RUN rm -v /etc/nginx/nginx.conf
 
-#COPY nginx.conf /etc/nginx/nginx.conf
+COPY conf/nginx.conf /etc/nginx/nginx.conf
 
-#COPY index.html /usr/share/nginx/html/index.html
+COPY index.html /var/www/html/index.html
 
-#EXPOSE 80
+EXPOSE 443
+
+RUN chmod 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 
 #-g sets a global configuration option; daemon off; runs in the foreground
-#CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
 
 

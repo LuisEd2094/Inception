@@ -10,8 +10,7 @@ all: $(NAME)
 
 $(NAME): Makefile $(NGINX)
 	@docker build -t nginx ./srcs/requirements/nginx/
-	@echo $(NGINX)
-#@docker run -d -p 8080:80 nginx
+	@docker run -d -p 8080:443 nginx
 
 fclean:
 	@docker system prune -af 
