@@ -4,7 +4,7 @@ FROM debian:11
 #Install NGINX for the contianer
 RUN apt-get update && apt-get install nginx vim curl openssl -y
 
-
+COPY conf/vimrc root/.vimrc
 
 
 #remove standard config and use mine  
