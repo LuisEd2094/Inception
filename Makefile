@@ -5,6 +5,9 @@ DOCKER_COMPOSE_FILE = ./srcs/docker-compose.yml
 
 all: build
 
+mariadb:
+	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) build mariadb
+
 build:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) build
 up:
