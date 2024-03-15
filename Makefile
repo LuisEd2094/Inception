@@ -9,9 +9,7 @@ mariadb:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) build mariadb
 
 build:
-	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) build
-up:
-	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d
+	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d 
 
 down:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) down
@@ -21,6 +19,12 @@ restart:
 
 logs:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) logs -f
+
+stop : 
+	@$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) stop
+
+start : 
+	@$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) start
 
 clean:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) down --rmi all --volumes
