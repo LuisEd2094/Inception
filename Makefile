@@ -6,7 +6,13 @@ DOCKER_COMPOSE_FILE = ./srcs/docker-compose.yml
 all: build
 
 mariadb:
-	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) build mariadb
+	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d  mariadb
+
+wordpress:
+	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d wordpress
+
+nginx:
+	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d nginx
 
 build:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d 

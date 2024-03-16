@@ -20,45 +20,35 @@ networks:
 
 services:
   nginx:
-    restart: always
-    build:
-      context: ./requirements/nginx/
-      dockerfile: Dockerfile
+    #restart: always
+    build: ./requirements/nginx/
     container_name: nginx_container
-    image: nginx
-    ports:
+    image: nginx:42
+    ports: 
       - 443:443
-    networks:
+    networks: 
       - inception
-    depends_on:
-      - wordpress
-    volumes:
-     - wordpress_data:/var/www/html
+    #depends_on: wordpress
+    #volumes: wordpress_data:/var/www/html
   wordpress:
-    restart: always
-    build:
-      context: ./requirements/wordpress/
-      dockerfile: Dockerfile
-    image: wordpress
+    #restart: always
+    build: ./requirements/wordpress/
+    image: wordpress:42
     container_name: wordpress_container
-    depends_on:
-      - mariadb
-    volumes:
-      - wordpress_data:/var/www/html
+    #depends_on: mariadb
+    #volumes: wordpress_data:/var/www/html
     env_file: ./.env
-    networks:
+    networks: 
       - inception
   mariadb:
-    restart: always
-    build:
-      context: ./requirements/mariadb/
-      dockerfile: Dockerfile
-    image: mariadb
+    #restart: always
+    build: ./requirements/mariadb/
+    image: mariadb:42
     container_name: mariadb_container
     env_file: ./.env
-    #volumes:
-    # - mariadb_data:/var/lib/mysql
-    networks:
+    volumes: 
+      - mariadb_data:/var/lib/mysql
+    networks: 
       - inception
 
 

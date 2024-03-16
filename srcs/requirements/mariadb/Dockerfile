@@ -9,6 +9,4 @@ COPY conf/vimrc root/.vimrc
 
 COPY ./conf/start_cmd.sh /
 
-#RUN bash init_config.sh
-
 CMD ["/start_cmd.sh"]
