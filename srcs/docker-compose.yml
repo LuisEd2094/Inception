@@ -1,42 +1,5 @@
 version: '3.8'
 
-services:
-  nginx:
-    restart: always
-    build:
-      context: ./requirements/nginx/
-      dockerfile: Dockerfile
-    container_name: nginx_container
-    image: nginx
-    ports:
-      - 443:443
-    networks:
-      - inception
-  mariadb:
-    #restart: always
-    build:
-      context: ./requirements/mariadb/
-      dockerfile: Dockerfile
-    image: mariadb
-    container_name: mariadb_container
-    env_file: ./.env
-    volumes:
-      - mariadb_data:/var/lib/mysql
-    networks:
-      - inception
-  wordpress:
-    restart: always
-    build:
-      context: ./requirements/wordpress/
-      dockerfile: Dockerfile
-    image: wordpress
-    container_name: wordpress_container
-    volumes:
-      - wordpress_data:/var/www/html
-    env_file: ./.env
-    networks:
-      - inception
-
 volumes:
   wordpress_data:
     driver: local
@@ -54,4 +17,50 @@ volumes:
 networks:
   inception:
     name: inception
+
+services:
+  nginx:
+    restart: always
+    build:
+      context: ./requirements/nginx/
+      dockerfile: Dockerfile
+    container_name: nginx_container
+    image: nginx
+    ports:
+      - 443:443
+    networks:
+      - inception
+    depends_on:
+      - wordpress
+    volumes:
+     - wordpress_data:/var/www/html
+  wordpress:
+    restart: always
+    build:
+      context: ./requirements/wordpress/
+      dockerfile: Dockerfile
+    image: wordpress
+    container_name: wordpress_container
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress_data:/var/www/html
+    env_file: ./.env
+    networks:
+      - inception
+  mariadb:
+    restart: always
+    build:
+      context: ./requirements/mariadb/
+      dockerfile: Dockerfile
+    image: mariadb
+    container_name: mariadb_container
+    env_file: ./.env
+    #volumes:
+    # - mariadb_data:/var/lib/mysql
+    networks:
+      - inception
+
+
+
 

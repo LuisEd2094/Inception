@@ -15,12 +15,10 @@ RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt \
 -subj "/C=ES/ST=BCN/L=Barcelona/O=42/OU=42/CN=lsoto-do.42.fr/UID=lsoto-do@student.42barcelona.com"
 
 
-COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY conf/nginx.conf /etc/nginx/sites-available/default
 
-EXPOSE 443
-
-RUN chmod 755 /var/www/html
-RUN chown -R www-data:www-data /var/www/html
+#RUN chmod 755 /var/www/html
+#RUN chown -R www-data:www-data /var/www/html
 
 #-g sets a global configuration option; daemon off; runs in the foreground
 CMD ["nginx", "-g", "daemon off;"]

@@ -30,6 +30,7 @@ clean:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) down --rmi all --volumes
 fclean: clean
 	@docker system prune -af 
+	@sudo rm -rf volumes/
 
 re: fclean all
 # Additional targets as needed...
