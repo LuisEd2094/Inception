@@ -17,8 +17,8 @@ RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt \
 
 COPY conf/nginx.conf /etc/nginx/sites-available/default
 
-#RUN chmod 755 /var/www/html
-#RUN chown -R www-data:www-data /var/www/html
+RUN chmod 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 
 #-g sets a global configuration option; daemon off; runs in the foreground
 CMD ["nginx", "-g", "daemon off;"]

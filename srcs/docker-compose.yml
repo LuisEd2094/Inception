@@ -28,15 +28,19 @@ services:
       - 443:443
     networks: 
       - inception
-    #depends_on: wordpress
-    #volumes: wordpress_data:/var/www/html
+    depends_on: 
+      - wordpress
+    volumes: 
+      - wordpress_data:/var/www/html
   wordpress:
     #restart: always
     build: ./requirements/wordpress/
     image: wordpress:42
     container_name: wordpress_container
-    #depends_on: mariadb
-    #volumes: wordpress_data:/var/www/html
+    depends_on: 
+     - mariadb
+    volumes: 
+     - wordpress_data:/var/www/html
     env_file: ./.env
     networks: 
       - inception

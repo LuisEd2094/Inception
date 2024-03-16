@@ -11,7 +11,6 @@ RUN wget https://wordpress.org/wordpress-6.4.3.zip -P /var/www/
 RUN cd /var/www && unzip wordpress-6.4.3.zip && rm wordpress-6.4.3.zip
 
 #Root permsion to run folder
-
 RUN chown -R root:root /var/www/wordpress
 
-EXPOSE 9000
+CMD ["service", "php7.4-fpm" ,"start"]
