@@ -9,7 +9,7 @@ mariadb:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d  mariadb
 
 wordpress:
-	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d wordpress
+	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE)  up --build -d wordpress
 
 nginx:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d nginx
