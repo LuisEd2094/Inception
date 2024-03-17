@@ -2,7 +2,7 @@
 FROM debian:11 
 
 #Install NGINX for the contianer
-RUN apt-get update && apt-get install nginx vim curl openssl -y
+RUN apt-get update -y && apt-get install nginx vim curl openssl -y
 
 COPY conf/vimrc root/.vimrc
 
@@ -18,7 +18,8 @@ RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt \
 COPY conf/nginx.conf /etc/nginx/sites-available/default
 
 #RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-
+RUN chmod 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 
 #-g sets a global configuration option; daemon off; runs in the foreground
 CMD ["nginx", "-g", "daemon off;"]

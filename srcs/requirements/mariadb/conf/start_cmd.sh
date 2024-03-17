@@ -9,7 +9,7 @@ echo "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%' ;" >> db1.sql
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$ADMIN_PASSWORD' ;" >> db1.sql
 echo "FLUSH PRIVILEGES;" >> db1.sql
 
-mysql < db1.sql
+mariadb < db1.sql
 
 kill $(cat /var/run/mysqld/mysqld.pid)
 

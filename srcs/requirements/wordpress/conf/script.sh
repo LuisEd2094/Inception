@@ -1,13 +1,8 @@
 #!/bin/bash
 
-
-mkdir /var/www/
-mkdir /var/www/html
+mkdir -p /var/www/html
 
 cd /var/www/html
-
-
-rm -rf *
 
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
 
@@ -20,7 +15,7 @@ wp core download --allow-root
 
 mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 
-mv /wp-config.php /var/www/html/wp-config.php
+cp /wp-config.php /var/www/html/wp-config.php
 
 
 sed -i -r "s/db1/$DB_NAME/1"   wp-config.php
@@ -35,19 +30,20 @@ wp core install --url=$DOMAIN_NAME/ --title=$WP_TITLE --admin_user=$WP_ADMIN_USR
 wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
 
 
-wp theme install astra --activate --allow-root
+#wp theme install astra --activate --allow-root
 
 
-wp plugin install redis-cache --activate --allow-root
+#wp plugin install redis-cache --activate --allow-root
 
-wp plugin update --all --allow-root
+#wp plugin update --all --allow-root
 
 
  
 sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf
 
-mkdir /run/php
+mkdir -p /run/php
 
 
 
-wp redis enable --allow-root
+
+#wp enable --allow-root

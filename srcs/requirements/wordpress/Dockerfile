@@ -1,6 +1,6 @@
 FROM debian:11 
 
-RUN apt-get update && apt-get install curl wget unzip php7.4 php-fpm php-mysql mariadb-client vim -y 
+RUN apt-get update -y && apt-get install curl php7.4 php-fpm php-mysql mariadb-client vim -y 
 
 COPY conf/vimrc root/.vimrc
 
@@ -12,9 +12,11 @@ COPY conf/vimrc root/.vimrc
 COPY conf/wp-config.php /
 COPY conf/script.sh /
 
-#Root permsion to run folder
-#RUN chown -R root:root /var/www/html/wordpress
+RUN /script.sh
 
+#Root permsion to run folder
+RUN chmod 755 /var/www/html
+RUN chown -R root:root /var/www/html
 #Start service to create sockets and stop it so the command can run it on the Foreground
 
 #COPY conf/info.php /var/www/html/wordpress/info.php
@@ -24,4 +26,4 @@ COPY conf/script.sh /
 #RUN sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf
 
 
-CMD ["/script.sh"]
+CMD ["php-fpm7.4", "-F"]
