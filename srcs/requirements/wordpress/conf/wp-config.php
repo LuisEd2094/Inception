@@ -29,7 +29,7 @@ define( 'DB_USER', 'user' );
 define( 'DB_PASSWORD', 'pwd' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mariadb_container' );
+define( 'DB_HOST', 'mariadb' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -50,15 +50,21 @@ define( 'WP_ALLOW_REPAIR', true );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'put your unique phrase here' );
-define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
-define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
-define( 'NONCE_KEY',        'put your unique phrase here' );
-define( 'AUTH_SALT',        'put your unique phrase here' );
-define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
-define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
-define( 'NONCE_SALT',       'put your unique phrase here' );
+define('AUTH_KEY',         'vm^I+PV@l;]d3+61yMPVGla6 :ulZAYYG0QmAC$QH3)ImF:RUH$Pr-TA^-i/r@E)');
+define('SECURE_AUTH_KEY',  'y/=Uab|-w9B[,& Aa~08 KubHq_L-{KOI}85.%+6hQRf$nvfu0@}^chbvLu94-LN');
+define('LOGGED_IN_KEY',    'dZ;n6<0f#&cL=XTN.zY;5NY.CZI#C@hxasP9BIQI~h#B(Vayy6TUtaU>Z6fd(,$4');
+define('NONCE_KEY',        'lb,Yiz&jN?B*N#-v?j<S,89H@|ive!crY#|?7?W-Y|R-$=z6|hmP5.df{(dG;wVq');
+define('AUTH_SALT',        '-,_x,SdeL!H*c$%%f 2h5$#=8va},3iDmIA_I!S8_,L^5SPCIlH}<E*d%-QXdwy(');
+define('SECURE_AUTH_SALT', 'FgNPW+OXCM4eR#vR&PS7G)/m%aP&qKXWuR)?QF(I E_5amZ?|A<!-%*hgS>,jfPa');
+define('LOGGED_IN_SALT',   '<^_C]2D++$N]4nY-bN3ddu^-0/+>/dt3LY-> A;.A_iUaM^D=Z_%(C3*FpWDh;+r');
+define('NONCE_SALT',       'HiQr+)hdXNle(BCqce)] a@z:b!^TY`5`n-rJt@|wYZfg.m+[|`em_{wE=m`l*gT');
 
+
+define( 'WP_REDIS_HOST', 'redis' );
+define( 'WP_REDIS_PORT', 6379 );     
+
+
+define('WP_CACHE', true);  
 /**#@-*/
 
 /**
@@ -81,7 +87,7 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/documentation/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
 
 /* Add any custom values between this line and the "stop editing" line. */
 

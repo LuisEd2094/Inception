@@ -3,7 +3,7 @@ DOCKER_COMPOSE_FILE = ./srcs/docker-compose.yml
 
 # Define targets
 
-all: build mariadb wordpress nginx
+all: build #mariadb wordpress nginx
 
 mariadb:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d  mariadb
@@ -15,7 +15,7 @@ nginx:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up  -d nginx
 
 build:
-	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) build 
+	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d
 
 down:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) down
