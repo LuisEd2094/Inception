@@ -35,7 +35,7 @@ start :
 
 
 $(VOLUMES):
-	@echo Creating Volumes
+	@echo Creating Volumes DIR
 	@mkdir -p $(VOLUMES)
 
 clean:
