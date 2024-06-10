@@ -1,9 +1,10 @@
-COMPOSE = docker-compose
+COMPOSE = docker compose
 DOCKER_COMPOSE_FILE = ./srcs/docker-compose.yml
+VOLUMES = ./volumes
 
 # Define targets
 
-all: build #mariadb wordpress nginx
+all: build mariadb wordpress nginx
 
 mariadb:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d  mariadb
@@ -14,8 +15,8 @@ wordpress:
 nginx:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up  -d nginx
 
-build:
-	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d
+build: 	| $(VOLUMES)
+	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d 
 
 down:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) down
@@ -32,40 +33,24 @@ stop :
 start : 
 	@$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) start
 
+
+$(VOLUMES):
+	@echo Creating Volumes
+	@mkdir -p $(VOLUMES)
+
 clean:
 	$(COMPOSE) -f $(DOCKER_COMPOSE_FILE) down --rmi all --volumes
+	
 fclean: clean
 	@docker system prune -af 
 	@sudo rm -rf volumes/
 
 re: fclean all
-# Additional targets as needed...
+
+
+
 
 .PHONY: all build up down restart logs clean re fclean
 
-
-
-#NAME        = 	inception
-
-#NGINX		= ./srcs/requirements/nginx/Dockerfile
-
-#all: $(NAME)
-
-#mariadb:
-#	@docker build -t mariadb ./srcs/requirements/mariadb/
-#nginx:
-#	@docker build -t nginx ./srcs/requirements/nginx/
-#@docker run -d -p 8080:443 nginx
-
-
-#$(NAME): mariadb nginx Makefile
-
-
-#fclean:
-#	@docker system prune -af 
-
-#re: fclean all	
-
-#.PHONY: all fclean re mariadb nginx
 
 
