@@ -1,19 +1,17 @@
-version: '3.8'
-
 volumes:
   wordpress:
     name: wordpress
     driver: local
     driver_opts:
       type: none
-      device: /home/luis/proyects/Inception/volumes
+      device: ../volumes
       o: bind
   mariadb:
     name: mariadb
     driver: local
     driver_opts:
       type: none
-      device: /home/luis/proyects/Inception/volumes
+      device: ../volumes
       o: bind
 
 networks:
@@ -58,8 +56,3 @@ services:
      - mariadb:/var/lib/mysql
     networks: 
       - inception
-
-
-
-
-
